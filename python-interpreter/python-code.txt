@@ -1,2 +1,2 @@
-print("Hello World!")
-print("Print this line!")
+#test1.py
+x = 5 * 2
