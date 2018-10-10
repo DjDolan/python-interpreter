@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1539147681 source:/home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<string>
+	<algorithm>
+
