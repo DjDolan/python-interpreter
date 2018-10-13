@@ -1,8 +1,15 @@
 # depslib dependency file v1.0
-1539194051 source:/home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
+1539302983 source:/home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
 	<iostream>
 	<fstream>
 	<vector>
 	<string>
 	<algorithm>
+	<stack>
+	"InfixToPostfix.h"
+
+1539302957 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/InfixToPostfix.h
+	<string>
+	<iostream>
+	<stack>
 
