@@ -1,2 +1,8 @@
-#test1.py
-x = 5 * 2
+#comment
+
+g = 5 * 2 - 3 + 5
+x = 3 + 8 * 6
+y = 7 * 2 + 9
+
+print("Hello World!")
+print("z=", z)

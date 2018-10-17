@@ -16,7 +16,7 @@
 #include <string>
 #include <algorithm>
 #include <stack>
-#include "InfixToPostfix.h"
+#include "expressions.h"
 
 using namespace std;
 
@@ -27,11 +27,12 @@ int main(int argc, char* argv[]) {
     //variable containers
     ifstream in_file;
     string line;
-    vector<char> char_remove = { '"', '(', ')', ' ' };
+    int var_pos;
+    vector<char> char_remove = { '"', '(', ')'};
     vector<char> operators = { '+', '-', '*', '/', '=' };
-    vector<char> math_exp;
     vector<string> strings;
     vector<char> variables;
+    vector<int> results;
 
     //open file to read lines as instructions
     in_file.open(argv[1]);
@@ -50,15 +51,8 @@ int main(int argc, char* argv[]) {
             print_statements(line, char_remove, strings);
         }
 
-        //if its a def use a function to read the function
         else if(line.find("=") != string::npos) {
-            variables.push_back(line[0]);
-            for(int i = 0; i < char_remove.size(); i++)
-                line.erase(remove(line.begin(), line.end(), char_remove[i]), line.end());
-            line.erase(line.begin(), line.begin() + 2);
-
-            string result = InfixToPostfix(line);
-            cout << result << endl;
+            eval_exp(line, variables, results);
         }
 
         else continue;
@@ -68,12 +62,6 @@ int main(int argc, char* argv[]) {
     in_file.close();
 
     //deallocate and dynamic variables
-//    for(auto i = strings.begin(); i != strings.end(); ++i)
-//        cout << *i << endl;
-//
-    for(auto j = math_exp.begin(); j != math_exp.end(); ++j)
-        cout << *j << " ";
-    cout << endl;
 
     return 0;
 }
@@ -92,3 +80,4 @@ void print_statements(string line, vector<char> ch_rm, vector<string>& s) {
     //push to list of strings
     s.push_back(line);
 }
+
