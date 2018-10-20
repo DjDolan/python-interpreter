@@ -1,9 +1,11 @@
-if x < y:
-	print(x)
-else:
-	print(y)
+x = 2
+y = 1
 
-
+if x > y:
+   b = 2
+   a = 1
+   print("a=", a)
+   print("b is this ", b)
 
 
 

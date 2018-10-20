@@ -38,7 +38,7 @@ void print(string line, vector<char> var, vector<int> res, char* rm_ch) {
                 if(arr[0] == var[i])
                     pos = i;
             }
-
+            //error checking
             if(pos == -1) {
                 cout << "The variable [" << arr[0] << "] does not exist in container." << endl;
                 return;

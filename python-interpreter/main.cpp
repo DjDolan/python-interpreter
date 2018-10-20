@@ -32,8 +32,8 @@ int main(int argc, char* argv[]) {
     //containers for data manipulation
     vector<char> variables; //stores the variables from the expression
     vector<int> results; //stores the evaluated results of the expression
-    vector<string> ifs; //stores the if statement instructions
-    vector<string> elses; //stores the else statement instructions
+    vector<string> if_instructions; //stores the lines where it is part of the if statement
+    vector<string> else_instructions; //stores the lines where it is part of the else statement
     vector<string> functions; //stores the function name and function id
     vector<int> functions_results; //stores the functions evaluated result
 
@@ -47,37 +47,42 @@ int main(int argc, char* argv[]) {
             continue;
 
         //if print then clean the contents and print value in ""
-        if(line.find("print") != string::npos)
-            print(line, variables, results, remove_ch);
-
+        if(line.find("print") != string::npos) {
+            //if there are three blank spaces in the front then part
+            //of if statement or function block
+            if(isspace(line[2]) && !isspace(line[3]))
+                if_instructions.push_back(line);
+            //else perform regular instructions
+            else
+                print(line, variables, results, remove_ch);
+        }
         //else if its a variable assignment then evaluate and store
-        else if(line.find("=") != string::npos)
-            parse(line, variables, results);
-
+        else if(line.find("=") != string::npos) {
+            //if there are three blank spaces in the front then part
+            //of if statement or function block
+            if(isspace(line[2]) && !isspace(line[3]))
+                if_instructions.push_back(line);
+            //else perform regular instructions
+            else
+                parse(line, variables, results);
+        }
         //else if its an if statement then read the whole if statement
-        else if(line.find("if") != string::npos || line.find("\t") != string::npos) {
-            ifs.push_back(line);
+        else if(line.find("if") != string::npos) {
+            if_instructions.push_back(line);
         }
-        //else if its an else statement then read the whole else statement
-        else if(line.find("else") != string::npos) {
-            elses.push_back(line);
-        }
+        //else if its three spaces then append to if instructions
+
     }
 
     file_in.close(); //closes the instruction file
 
     //catch all the if statements and anything that needs to be
     //evaluated here so nothing gets left out from output
-
-    for(int i = 0; i != ifs.size(); i++) {
-        cout << ifs[i] << " " << elses[i] << endl;
-    }
+    IfStatement(if_instructions, variables, results);
 
     //deallocate all dynamic containers
     variables.clear();
     results.clear();
-    ifs.clear();
-    elses.clear();
     functions.clear();
     functions_results.clear();
 
