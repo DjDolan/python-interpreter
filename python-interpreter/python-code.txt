@@ -1,7 +1,17 @@
+x = 2
+y = 3
+z = x * y
+
+if x < y:
+   print("Hey")
+   x = 5
+
 def f():
+   x = 3
    print("Hello")
-   
-if 1 < 2:
    print("Hi")
+   print(x)
 
-
+print(x)
+print(y)
+print(z)

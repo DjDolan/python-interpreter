@@ -27,7 +27,7 @@
 	<string.h>
 	<vector>
 
-1540060464 source:/home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
+1540067817 source:/home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -37,6 +37,7 @@
 	"expressions.h"
 	"print.h"
 	"if_statements.h"
+	"functions.h"
 
 1540020453 /home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/expressions.h
 	<iostream>
@@ -50,17 +51,23 @@
 	<stack>
 	<string>
 
-1540060516 /home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/print.h
+1540067784 /home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/print.h
 	<iostream>
 	<string>
 	<string.h>
 	<vector>
 	"expressions.h"
 
-1540061575 /home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/if_statements.h
+1540067816 /home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/if_statements.h
 	<iostream>
 	<stdio.h>
 	<unistd.h>
 	"InfixToPostfix.h"
 	"expressions.h"
+
+1540068080 /home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/functions.h
+	<iostream>
+	<vector>
+	"expressions.h"
+	"print.h"
 

@@ -161,11 +161,10 @@ void IfBlock(vector<string>& if_ins, vector<char>& var, vector<int>& res) {
     //loop through instructions and read by line
     while(i != if_ins.size()) {
         string instruction = if_ins[i]; //temporary container for instruction line
-        bool inHere = false;
 
         //if print then clean the contents and print value in ""
         if(instruction.find("print") != string::npos)
-            print(instruction, var, res, remove_ch, inHere);
+            print(instruction, var, res, remove_ch);
 
         //else if its a variable assignment then evaluate and store
         else if(instruction.find("=") != string::npos)

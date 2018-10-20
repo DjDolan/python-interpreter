@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void print(string line, vector<char> var, vector<int> res, char* rm_ch, bool& inHere) {
+void print(string line, vector<char> var, vector<int> res, char* rm_ch) {
 
         //parse the line
         string new_line = line.substr(line.find('('), line.find(')'));
@@ -40,7 +40,7 @@ void print(string line, vector<char> var, vector<int> res, char* rm_ch, bool& in
             }
             //error checking
             if(pos == -1) {
-                inHere = false;
+                cerr << "unexpected error" << endl;
                 return;
             }
 

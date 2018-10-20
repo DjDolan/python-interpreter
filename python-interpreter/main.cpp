@@ -29,7 +29,6 @@ int main(int argc, char* argv[]) {
     ifstream file_in; //to read in the file
     string line; //line for reading python instructions
     char remove_ch[3] = {'(', ')', '"'}; //array of characters to remove
-    bool inHere = false; //bool to check multiple containers
 
     //containers for data manipulation
     vector<char> variables; //stores the variables from the expression
@@ -59,7 +58,7 @@ int main(int argc, char* argv[]) {
                 //check previous lines if its if or function
                 for(int i = file_copy.size()-1; i != 0; i--) {
                     //if find def then push to functions container
-                    if(file_copy[i].find("def") != string::npos) {
+                    if(file_copy[i].find("()") != string::npos) {
                         functions_instructions.push_back(line);
                         break;
                     }
@@ -72,7 +71,7 @@ int main(int argc, char* argv[]) {
             }
             //else perform regular instructions
             else
-                print(line, variables, results, remove_ch, inHere);
+                print(line, variables, results, remove_ch);
         }
         //else if its a variable assignment then evaluate and store
         else if(line.find("=") != string::npos) {
@@ -82,16 +81,12 @@ int main(int argc, char* argv[]) {
                 //check previous lines if its if or function
                 for(int i = file_copy.size()-1; i != 0; i--) {
                     //if find def then push to functions container
-                    if(file_copy[i].find("def") != string::npos) {
-                        cout << line << endl;
-                        cout << file_copy[i] << endl;
+                    if(file_copy[i].find("()") != string::npos) {
                         functions_instructions.push_back(line);
                         break;
                     }
                     //else if find if then push to if_instructions container
                     else if(file_copy[i].find("if") != string::npos) {
-                        cout << line << endl;
-                        cout << file_copy[i] << endl;
                         if_instructions.push_back(line);
                         break;
                     }
@@ -107,9 +102,17 @@ int main(int argc, char* argv[]) {
         }
         //else if its a function push to functions container
         else if(line.find("def") != string::npos) {
+            //clean and parse line
+            line.erase(line.begin(), line.begin()+3);
+            line.erase(remove(line.begin(), line.end(), ' '), line.end());
+            line.erase(remove(line.begin(), line.end(), ':'), line.end());
+
+            //push parsed line to container
             functions.push_back(line);
         }
-
+        //else if we have a function call
+        //else continue until eof()
+        else continue;
     }
 
     file_in.close(); //closes the instruction file
@@ -120,13 +123,17 @@ int main(int argc, char* argv[]) {
         IfStatement(if_instructions, variables, results);
 
     //Evaluate functions and store results for output
-    if(!functions_instructions.empty())
+    if(!functions.empty())
         FunctionScanner(functions, functions_instructions, functions_results, variables, results);
 
     //deallocate all dynamic containers
     variables.clear();
     results.clear();
+    file_copy.clear();
+    if_instructions.clear();
+    else_instructions.clear();
     functions.clear();
+    functions_instructions.clear();
     functions_results.clear();
 
     return 0; //end of program
