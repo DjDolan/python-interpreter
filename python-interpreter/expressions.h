@@ -102,7 +102,7 @@ int PostfixCalculator(string exp, vector<char> var, vector<int> res) {
         }
         //if expression is a function then perform function and append to result
         //else ignore
-        else { continue; }
+        else continue;
 
     }
 
