@@ -1,6 +1,6 @@
 /*
     Author(s): Donald Aguinaldo | 1455130
-               Duncan Moore     |
+               Duncan Moore     | 1465434
 
     Title: My Python Interpreter
 
@@ -41,35 +41,27 @@ int main(int argc, char* argv[]) {
     while(getline(file_in, line)) {
 
         //if # then ignore
-        if(line.find("#") != string::npos) { continue; }
+        if(line.find("#") != string::npos)
+            continue;
 
         //if print then clean the contents and print value in ""
         if(line.find("print") != string::npos)
             print(line, variables, results, remove_ch);
 
         //else if its a variable assignment then evaluate and store
-        else if(line.find("=") != string::npos) {
-
-            //parse the line to variable and expression line
-            string var_line = line.substr(0, line.find('='));
-            string exp_line = line.substr(line.find('='), line.size()-1);
-
-            //clean the lines
-            var_line.erase(remove(var_line.begin(), var_line.end(), ' '), var_line.end()); //removes blanks from variable
-            exp_line.erase(remove(exp_line.begin(), exp_line.end(), ' '), exp_line.end()); //removes blanks from expression
-            exp_line.erase(remove(exp_line.begin(), exp_line.end(), '='), exp_line.end()); //removes the '=' symbol
-
-            //store the values in appropriate containers
-            char arr[var_line.size()]; //temporary char array for conversion
-            strcpy(arr, var_line.c_str()); //string copy to temporary char array
-            variables.push_back(arr[0]); //push the characters to variables container
-
-            //evaluate expression using postfix notation
-            evaluate(exp_line, results);
-
-        }
+        else if(line.find("=") != string::npos)
+            parse(line, variables, results);
 
     }
+
+    file_in.close(); //closes the instruction file
+
+    //deallocate all dynamic containers
+    variables.clear();
+    results.clear();
+    expressions.clear();
+    functions.clear();
+    functions_results.clear();
 
     return 0; //end of program
 }

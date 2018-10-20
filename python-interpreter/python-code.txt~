@@ -4,12 +4,15 @@ g = 5 * 2 - 3 + 5
 x = 3 + 8 * 6
 y = 1
 z = 2 + 3
+a = y + z
 
 print("Hello World!")
 print("g=", g)
 print("x=", x)
 print("y=", y)
 print("z=", z)
+print("a=", a)
+
 
 
 

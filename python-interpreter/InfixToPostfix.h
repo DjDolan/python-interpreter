@@ -27,8 +27,11 @@ int HasHigherPrecedence(char operator1, char operator2);
 // Function to verify whether a character is operator symbol or not.
 bool IsOperator(char C);
 
-// Function to verify whether a character is alphanumeric chanaracter (letter or numeric digit) or not.
+// Function to verify whether a character is alphanumeric character (numeric digit) or not.
 bool IsOperand(char C);
+
+// Function to verify whether a character is a character letter or not.
+bool IsVariable(char var);
 
 // Function to evaluate Postfix expression and return output
 string InfixToPostfix(string expression)
@@ -53,7 +56,7 @@ string InfixToPostfix(string expression)
 			S.push(expression[i]);
 		}
 		// Else if character is an operand
-		else if(IsOperand(expression[i]))
+		else if(IsOperand(expression[i]) || IsVariable(expression[i]))
 		{
 			postfix +=expression[i];
 		}
@@ -96,6 +99,11 @@ bool IsOperator(char C)
 		return true;
 
 	return false;
+}
+
+bool IsVariable(char var) {
+    if(var >= 'a' && var <= 'z') return true;
+    else return false;
 }
 
 // Function to verify whether an operator is right associative or not.

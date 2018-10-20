@@ -11,7 +11,7 @@ using namespace std;
 
 /* simple postfix calculator */
 
-int performOperation(int opd1, int opd2, char op) {
+int PerformOperation(int opd1, int opd2, char op) {
 
     int res = 0; //temporary result
 
@@ -36,7 +36,7 @@ int performOperation(int opd1, int opd2, char op) {
     return res;
 }
 
-int PostfixCalculator(string exp) {
+int PostfixCalculator(string exp, vector<char> var, vector<int> res) {
 
     //result variable to return
     int result = 0;
@@ -70,12 +70,34 @@ int PostfixCalculator(string exp) {
 
             /* Need to add function for long integers */
         }
+        //if a variable search for its results in container if it exists
+        else if(IsVariable(exp[i])) {
+
+            bool exists = false; //temporary bool
+
+            //if true then search variable container
+            for(int j = 0; j != var.size(); j++) {
+                if(exp[i] == var[j]) {
+                    int operand = res[j];
+                    exists = true;
+                    s.push(operand);
+                    break;
+                }
+            }
+
+            if(exists == false) {
+                cerr << "Error: [" << exp[i] << "] does not exist in container." << endl;
+                exit(1);
+            }
+
+        }
         //if operator pop two values from stack and operate on them
         else if(IsOperator(exp[i])) {
+
             int operand1 = s.top(); s.pop(); //top element becomes operand 1 and pop from stack
             int operand2 = s.top(); s.pop(); //top element becomes operand 2 and pop from stack
 
-            result = performOperation(operand1, operand2, exp[i]); //performs the op and returns result
+            result = PerformOperation(operand1, operand2, exp[i]); //performs the op and returns result
             s.push(result); //push back to stack to continue operating and find final result
         }
         //if expression is a function then perform function and append to result
@@ -88,14 +110,34 @@ int PostfixCalculator(string exp) {
 }
 
 //this funcition will evaluate the postfix expression
-void evaluate(string expression, vector<int>& res) {
+void evaluate(string expression, vector<char> var, vector<int>& res) {
 
     //store the postfix expression
     string postfix = InfixToPostfix(expression);
 
     //store postfix results in results container
-    int result = PostfixCalculator(postfix);
+    int result = PostfixCalculator(postfix, var, res);
     res.push_back(result);
+
+}
+
+void parse(string line, vector<char>& var, vector<int>& res) {
+    //parse the line to variable and expression line
+    string var_line = line.substr(0, line.find('='));
+    string exp_line = line.substr(line.find('='), line.size()-1);
+
+    //clean the lines
+    var_line.erase(remove(var_line.begin(), var_line.end(), ' '), var_line.end()); //removes blanks from variable
+    exp_line.erase(remove(exp_line.begin(), exp_line.end(), ' '), exp_line.end()); //removes blanks from expression
+    exp_line.erase(remove(exp_line.begin(), exp_line.end(), '='), exp_line.end()); //removes the '=' symbol
+
+    //store the values in appropriate containers
+    char arr[var_line.size()]; //temporary char array for conversion
+    strcpy(arr, var_line.c_str()); //string copy to temporary char array
+    var.push_back(arr[0]); //push the characters to variables container
+
+    //evaluate expression using postfix notation
+    evaluate(exp_line, var, res);
 
 }
 
