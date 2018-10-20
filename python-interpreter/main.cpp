@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
             variables.push_back(arr[0]); //push the characters to variables container
 
             //evaluate expression using postfix notation
-            evaluate(exp_line);
+            evaluate(exp_line, results);
 
         }
 

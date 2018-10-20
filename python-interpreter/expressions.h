@@ -88,13 +88,15 @@ int PostfixCalculator(string exp) {
 }
 
 //this funcition will evaluate the postfix expression
-void evaluate(string expression) {
+void evaluate(string expression, vector<int>& res) {
 
     //store the postfix expression
     string postfix = InfixToPostfix(expression);
 
-    //postfix calculations
-    cout << PostfixCalculator(postfix) << endl;
+    //store postfix results in results container
+    int result = PostfixCalculator(postfix);
+    res.push_back(result);
+
 }
 
 #endif // EXPRESSIONS_H_INCLUDED

@@ -10,8 +10,6 @@ print("g=", g)
 print("x=", x)
 print("y=", y)
 print("z=", z)
-print("w=", w)
-
 
 
 

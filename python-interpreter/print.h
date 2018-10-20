@@ -5,6 +5,7 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include "exists.h"
 
 using namespace std;
 
@@ -24,15 +25,29 @@ void print(string line, vector<char> var, vector<int> res, char* rm_ch) {
             string var_line = new_line.substr(new_line.find(',')+1, new_line.size()-1);
             var_line.erase(remove(var_line.begin(), var_line.end(), ' '), var_line.end());
 
+
             //copy variable in the string to char array
             char arr[var_line.size()];
             strcpy(arr, var_line.c_str());
 
             //check if the variable is in the container
-            //if yes, then find corresponding result in result container
-            //if no, then print out and unexpected error
-        }
+            int pos = -1; //temporary position variable
+            for(int i = 0; i != var.size(); i++) {
+                //if yes, then find corresponding result in result container
+                if(arr[0] == var[i])
+                    pos = i;
+            }
 
+            if(pos == -1) {
+                cout << "The item you are looking for does not exist." << endl;
+                return;
+            }
+
+            cout << print_line << res[pos] << endl;
+
+        }
+        //case where only the variable is called
+        //case where only the function is called
         //case where there is no variable called
         else
             cout << new_line << endl;
