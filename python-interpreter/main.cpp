@@ -14,70 +14,63 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <string.h>
 #include <algorithm>
-#include <stack>
 #include "expressions.h"
+#include "print.h"
 
 using namespace std;
 
-void print_statements(string line, vector<char>, vector<string>&);
-
 int main(int argc, char* argv[]) {
 
-    //variable containers
-    ifstream in_file;
-    string line;
-    int var_pos;
-    vector<char> char_remove = { '"', '(', ')'};
-    vector<char> operators = { '+', '-', '*', '/', '=' };
-    vector<string> strings;
-    vector<char> variables;
-    vector<int> results;
+    //variables for manipulation of data
+    ifstream file_in; //to read in the file
+    string line; //line for reading python instructions
+    char remove_ch[3] = {'(', ')', '"'}; //array of characters to remove
 
-    //open file to read lines as instructions
-    in_file.open(argv[1]);
+    //containers for data manipulation
+    vector<char> variables; //stores the variables from the expression
+    vector<int> results; //stores the evaluated results of the expression
+    vector<char> expressions; //stores the characters of the expression
+    vector<string> functions; //stores the function name and function id
+    vector<int> functions_results; //stores the functions evaluated result
 
-    //loop through lines and perform different functions
-    while(getline(in_file, line)) {
+    file_in.open(argv[1]); //opens the next argument in the command line
 
-        //catches comments and skips line
-        if(line.find("#") != string::npos)
-            continue;
+    //loop to read the instructions line by line
+    while(getline(file_in, line)) {
 
-        //if its a print line then we send to print function
-        else if(line.find("print") != string::npos) {
+        //if # then ignore
+        if(line.find("#") != string::npos) { continue; }
 
-            //iterate through container for characters to remove for print function
-            print_statements(line, char_remove, strings);
-        }
+        //if print then clean the contents and print value in ""
+        if(line.find("print") != string::npos)
+            print(line, variables, results, remove_ch);
 
+        //else if its a variable assignment then evaluate and store
         else if(line.find("=") != string::npos) {
-            eval_exp(line, variables, results);
+
+            //parse the line to variable and expression line
+            string var_line = line.substr(0, line.find('='));
+            string exp_line = line.substr(line.find('='), line.size()-1);
+
+            //clean the lines
+            var_line.erase(remove(var_line.begin(), var_line.end(), ' '), var_line.end()); //removes blanks from variable
+            exp_line.erase(remove(exp_line.begin(), exp_line.end(), ' '), exp_line.end()); //removes blanks from expression
+            exp_line.erase(remove(exp_line.begin(), exp_line.end(), '='), exp_line.end()); //removes the '=' symbol
+
+            //store the values in appropriate containers
+            char arr[var_line.size()]; //temporary char array for conversion
+            strcpy(arr, var_line.c_str()); //string copy to temporary char array
+            variables.push_back(arr[0]); //push the characters to variables container
+
+            //evaluate expression using postfix notation
+            evaluate(exp_line);
+
         }
 
-        else continue;
     }
 
-    //close file once done
-    in_file.close();
-
-    //deallocate and dynamic variables
-
-    return 0;
-}
-
-//this function will take in a text line and remove everythin that
-//needs to be removed so that there will be nothing but the output
-void print_statements(string line, vector<char> ch_rm, vector<string>& s) {
-
-    //loop through and search for characters to remove
-    //will implement if statements to read variables and
-    //function reading as an output
-    for(int i = 0; i != ch_rm.size(); i++)
-        line.erase(remove(line.begin(), line.end(), ch_rm[i]), line.end()); //removes (, ), and "
-    line.erase(line.begin(), line.begin() + 5); //removes 'print'
-
-    //push to list of strings
-    s.push_back(line);
+    return 0; //end of program
 }
 
