@@ -1,11 +1,7 @@
-x = 2
-y = 1
-
-if x > y:
-   b = 2
-   a = 1
-   print("a=", a)
-   print("b is this: ", b)
-
+def f():
+   print("Hello")
+   
+if 1 < 2:
+   print("Hi")
 
 

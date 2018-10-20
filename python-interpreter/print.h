@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void print(string line, vector<char> var, vector<int> res, char* rm_ch) {
+void print(string line, vector<char> var, vector<int> res, char* rm_ch, bool& inHere) {
 
         //parse the line
         string new_line = line.substr(line.find('('), line.find(')'));
@@ -40,7 +40,7 @@ void print(string line, vector<char> var, vector<int> res, char* rm_ch) {
             }
             //error checking
             if(pos == -1) {
-                cout << "The variable [" << arr[0] << "] does not exist in container." << endl;
+                inHere = false;
                 return;
             }
 

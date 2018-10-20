@@ -9,7 +9,8 @@
 
 using namespace std;
 
-void IfBlock(vector<string>&); //prototype for if block instructions
+void IfStatement(vector<string>&, vector<char>&, vector<int>&); //prototype for if statement evaluator
+void IfBlock(vector<string>&, vector<char>&, vector<int>&); //prototype for if block instructions
 void ElseBlock(); //prototype for else block instructions
 
 //function to verify comparators in if statement
@@ -76,7 +77,7 @@ void IfStatement(vector<string>& if_ins, vector<char>& var, vector<int>& res) {
 
         switch(compare) {
             case 1:
-                IfBlock(if_ins);
+                IfBlock(if_ins, var, res);
                 break;
             case 0:
                 ElseBlock();
@@ -135,7 +136,7 @@ void IfStatement(vector<string>& if_ins, vector<char>& var, vector<int>& res) {
 
         switch(compare) {
             case 1:
-                IfBlock(if_ins);
+                IfBlock(if_ins, var, res);
                 break;
             case 0:
                 ElseBlock();
@@ -152,24 +153,23 @@ void IfStatement(vector<string>& if_ins, vector<char>& var, vector<int>& res) {
 
 }
 
-void IfBlock(vector<string>& if_ins) {
+void IfBlock(vector<string>& if_ins, vector<char>& var, vector<int>& res) {
     //if statement block container variables
-    vector<char> if_var; //if statement variables
-    vector<int> if_res; //if statement results
     char remove_ch[3] = {'(', ')', '"'}; //array of characters to remove
     int i = 0; //iterator variables to read instructions
 
     //loop through instructions and read by line
     while(i != if_ins.size()) {
         string instruction = if_ins[i]; //temporary container for instruction line
+        bool inHere = false;
 
         //if print then clean the contents and print value in ""
         if(instruction.find("print") != string::npos)
-            print(instruction, if_var, if_res, remove_ch);
+            print(instruction, var, res, remove_ch, inHere);
 
         //else if its a variable assignment then evaluate and store
         else if(instruction.find("=") != string::npos)
-            parse(instruction, if_var, if_res);
+            parse(instruction, var, res);
 
         i++; //increments through vector
     }
