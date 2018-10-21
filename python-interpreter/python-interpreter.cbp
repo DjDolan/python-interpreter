@@ -33,15 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="InfixToPostfix.h" />
+		<Unit filename="functions.h" />
+		<Unit filename="if_statements.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="myScanner.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="myScanner.l">
-			<Option compile="1" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="myinterpreter.cpp" />
+		<Unit filename="print.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

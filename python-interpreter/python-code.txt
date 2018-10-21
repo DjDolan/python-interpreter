@@ -2,16 +2,10 @@ x = 2
 y = 3
 z = x * y
 
-if x < y:
-   print("Hey")
-   x = 5
-
 def f():
+   print(x)
    x = 3
    print("Hello")
    print("Hi")
    print(x)
 
-print(x)
-print(y)
-print(z)

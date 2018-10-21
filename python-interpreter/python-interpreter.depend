@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1539975013 source:/home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
+1540095570 source:/home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
 	<iostream>
 	<fstream>
 	<vector>
@@ -8,24 +8,27 @@
 	<algorithm>
 	"expressions.h"
 	"print.h"
+	"if_statements.h"
+	"functions.h"
 
-1539974690 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/InfixToPostfix.h
+1540095570 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/InfixToPostfix.h
 	<iostream>
 	<stack>
 	<string>
 
-1539984455 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/expressions.h
+1540095570 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/expressions.h
 	<iostream>
 	<stdio.h>
 	<stack>
 	<string>
 	"InfixToPostfix.h"
 
-1539899737 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/print.h
+1540095570 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/print.h
 	<iostream>
 	<string>
 	<string.h>
 	<vector>
+	"expressions.h"
 
 1540067817 source:/home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/main.cpp
 	<iostream>
@@ -66,6 +69,19 @@
 	"expressions.h"
 
 1540068080 /home/donald/Desktop/Donald/UH/COSC4315/hw2/python-interpreter/python-interpreter/functions.h
+	<iostream>
+	<vector>
+	"expressions.h"
+	"print.h"
+
+1540095570 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/if_statements.h
+	<iostream>
+	<stdio.h>
+	<unistd.h>
+	"InfixToPostfix.h"
+	"expressions.h"
+
+1540095570 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter/functions.h
 	<iostream>
 	<vector>
 	"expressions.h"

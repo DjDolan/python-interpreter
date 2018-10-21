@@ -21,3 +21,4 @@ For example, the position of variable 'z' in the variables vector is 1. The same
 1, is found in the results vector and contains the value of 'z' which could be any integer.
 
 UPDATE:
+We can now support function definitions and if statements. It currently cannot read else statements and assignment of functions to variables. We implemented the if statements by copying the lines under the if as lines of instructions to a container. We then read the condition to see if its true or not. If it is true then we go ahead and read the instructions in the container and process it as its own code with print statements and variable assignments. It can modify variables already stored in the global container and print out from the definition as well. It does not do anything if the condition returns false. Functions work the same way as the if statement by reading the instructions as its own set of code. The functions run automatically without being called. 
