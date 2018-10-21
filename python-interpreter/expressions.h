@@ -36,7 +36,7 @@ int PerformOperation(int opd1, int opd2, char op) {
     return res;
 }
 
-int PostfixCalculator(string exp, vector<char> var, vector<int> res) {
+int PostfixCalculator(string exp, vector<string> var, vector<int> res) {
 
     //result variable to return
     int result = 0;
@@ -110,7 +110,7 @@ int PostfixCalculator(string exp, vector<char> var, vector<int> res) {
 }
 
 //this funcition will evaluate the postfix expression
-void evaluate(string expression, vector<char> var, vector<int>& res) {
+void evaluate(string expression, vector<string> var, vector<int>& res) {
 
     //store the postfix expression
     string postfix = InfixToPostfix(expression);
@@ -121,7 +121,7 @@ void evaluate(string expression, vector<char> var, vector<int>& res) {
 
 }
 
-void parse(string line, vector<char>& var, vector<int>& res) {
+void parse(string line, vector<string>& var, vector<int>& res) {
     //parse the line to variable and expression line
     string var_line = line.substr(0, line.find('='));
     string exp_line = line.substr(line.find('='), line.size()-1);

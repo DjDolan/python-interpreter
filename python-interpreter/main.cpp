@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
     char remove_ch[3] = {'(', ')', '"'}; //array of characters to remove
 
     //containers for data manipulation
-    vector<char> variables; //stores the variables from the expression
+    vector<string> variables; //stores the variables from the expression
     vector<int> results; //stores the evaluated results of the expression
     vector<string> file_copy; //stores a copy of instructions for manipulation
     vector<string> if_instructions; //stores the lines where it is part of the if statement

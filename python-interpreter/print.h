@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void print(string line, vector<char> var, vector<int> res, char* rm_ch) {
+void print(string line, vector<string> var, vector<int> res, char* rm_ch) {
 
         //parse the line
         string new_line = line.substr(line.find('('), line.find(')'));

@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1540159109 source:/home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter-v2/main.cpp
+	<iostream>
+	<stdio.h>
+	<vector>
+	<string>
+	<fstream>
+	"parser.h"
+	"algorithm"
+
+1540159443 /home/don/Desktop/UH/COSC4315/hw2/python-interpreter/python-interpreter-v2/parser.h
+	<stdio.h>
+	<string.h>
+	<algorithm>
+

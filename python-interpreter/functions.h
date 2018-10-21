@@ -9,7 +9,7 @@
 using namespace std;
 
 //function to scan the function and return an output
-void FunctionScanner(vector<string> func, vector<string>& func_ins, vector<int>& func_res, vector<char> var, vector<int> res) {
+void FunctionScanner(vector<string> func, vector<string>& func_ins, vector<int>& func_res, vector<string> var, vector<int> res) {
     char remove_ch[3] = {'(', ')', '"'}; //array of characters to remove
     int i = 0; //iterator variables to read instructions
 

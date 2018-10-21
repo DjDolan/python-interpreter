@@ -1,11 +1,4 @@
-x = 2
-y = 3
+x = 20
+y = 31
 z = x * y
-
-def f():
-   print(x)
-   x = 3
-   print("Hello")
-   print("Hi")
-   print(x)
 
