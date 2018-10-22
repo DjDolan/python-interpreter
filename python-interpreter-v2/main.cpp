@@ -27,12 +27,13 @@ int main(int argc, char* argv[]) {
         //if contains "#" or line is empty then ignore
         if(instructions[i].find("#") != string::npos) { continue; }
 
+        //if '=' then its an assignment operator
         if(instructions[i].find("=") != string::npos) {
             //clean and parse the line
-            parser(instructions[i]);
+            parser(instructions[i], variables, values);
         }
-
     }
+
 
     return 0;
 }
