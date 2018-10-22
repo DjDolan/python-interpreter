@@ -13,16 +13,16 @@
 	<string.h>
 	<algorithm>
 
-1540175129 source:/home/donald/Desktop/Donald/COSC4315/hw2/python-interpreter/python-interpreter-v2/main.cpp
+1540178957 source:/home/donald/Desktop/Donald/COSC4315/hw2/python-interpreter/python-interpreter-v2/main.cpp
 	<iostream>
 	<stdio.h>
 	<vector>
 	<string>
 	<fstream>
 	"parser.h"
-	"algorithm"
+	"print.h"
 
-1540174591 /home/donald/Desktop/Donald/COSC4315/hw2/python-interpreter/python-interpreter-v2/parser.h
+1540182653 /home/donald/Desktop/Donald/COSC4315/hw2/python-interpreter/python-interpreter-v2/parser.h
 	<iostream>
 	<stdio.h>
 	<string>
@@ -35,8 +35,14 @@
 	<stack>
 	<string>
 
-1540175153 /home/donald/Desktop/Donald/COSC4315/hw2/python-interpreter/python-interpreter-v2/postfixcalculator.h
+1540182824 /home/donald/Desktop/Donald/COSC4315/hw2/python-interpreter/python-interpreter-v2/postfixcalculator.h
 	<stdio.h>
 	<stack>
 	"parser.h"
+
+1540179343 /home/donald/Desktop/Donald/COSC4315/hw2/python-interpreter/python-interpreter-v2/print.h
+	<iostream>
+	<string>
+	<string.h>
+	<vector>
 

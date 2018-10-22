@@ -48,7 +48,7 @@ void parser(string exp, vector<string>& variables, vector<int>& values) {
     else {
         //if not an expression and just a string of numbers
         //then cast to int and push to value container
-        values.push_back(std::stoi(val_line));
+        values.push_back(stoi(val_line));
     }
 
 }
@@ -61,13 +61,14 @@ void evaluateExp(string exp, vector<string>& var, vector<int>& val) {
 
     //temporary variables
     string postfix;
+    string variable;
 
     for(int i = 0; i != exp.length(); i++) {
-        if(IsNumber(exp[i])) {
+        if(IsNumber(exp[i]) || IsVariable(exp[i])) {
             postfix += exp[i];
         }
         else if(IsOperator(exp[i])) {
-
+            //use '@' as separator
             postfix += '@';
             while(!s.empty() && HasHigherPrecedence(s.top(), exp[i])) {
 				postfix += s.top();
@@ -78,10 +79,10 @@ void evaluateExp(string exp, vector<string>& var, vector<int>& val) {
     }
 
     while(!s.empty()) {
-        postfix += s.top();
-        s.pop();
+        postfix += s.top(); s.pop();
     }
 
+    //PostfixCalculate(postfix, var, val);
     val.push_back(PostfixCalculate(postfix, var, val));
 
 }

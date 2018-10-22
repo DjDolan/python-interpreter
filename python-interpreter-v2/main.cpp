@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include "parser.h"
-#include "algorithm"
+#include "print.h"
 
 using namespace std;
 
@@ -24,16 +24,23 @@ int main(int argc, char* argv[]) {
     file_in.close();
 
     for(int i = 0; i != instructions.size(); i++) {
+
+        //if 'print' then its a print statement
+        if(instructions[i].find("print") != string::npos) {
+            //check for variable calls and function calls
+            print(instructions[i], variables, values);
+        }
+
         //if contains "#" or line is empty then ignore
-        if(instructions[i].find("#") != string::npos) { continue; }
+        else if(instructions[i].find("#") != string::npos) { continue; }
 
         //if '=' then its an assignment operator
-        if(instructions[i].find("=") != string::npos) {
+        else if(instructions[i].find("=") != string::npos) {
             //clean and parse the line
             parser(instructions[i], variables, values);
         }
-    }
 
+    }
 
     return 0;
 }

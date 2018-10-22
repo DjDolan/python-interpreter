@@ -36,7 +36,13 @@ int operation(char, int, int);
 
 int PostfixCalculate(string postfix, vector<string>& var, vector<int>& val) {
     int result = 0; //return this
+    string variable;
     stack<int> s; //stack for manipulation
+
+//    cout << "Values in containers: " << endl;
+//    for(int i = 0; i != var.size(); i++) {
+//        cout << var[i] << "=" << val[i] << endl;
+//    }
 
     for(int i = 0; i != postfix.length(); i++) {
         //if a digit then push to stack
@@ -51,20 +57,37 @@ int PostfixCalculate(string postfix, vector<string>& var, vector<int>& val) {
             i--;
 			s.push(operand);
         }
+        //if a variable find it from the containers
+        else if(IsVariable(postfix[i])) {
+            variable += postfix[i];
+
+            if(!IsVariable(postfix[i+1])) {
+                for(int k = 0; k != var.size(); k++) {
+                    if(var[k] == variable) {
+                        s.push(val[k]);
+                        break;
+                    }
+                }
+                variable = "";
+            }
+
+        }
         //if operator then pop two ints and evaluate
+        //check for variable still in the expression
         else if(IsOperator(postfix[i])) {
+
             int op1 = s.top(); s.pop();
             int op2 = s.top(); s.pop();
 
             result = operation(postfix[i], op1, op2);
 
+            //cout << result << endl;
             s.push(result);
         }
     }
 
     while(!s.empty()) {
-        result = s.top();
-        s.pop();
+        result = s.top();  s.pop();
     }
 
     return result;
